@@ -11,13 +11,17 @@
    [metabase.config :as config]
    [metabase.driver.init]
    [metabase.events.init]
+   [metabase.indexed-entities.init]
    [metabase.logger.init]
    [metabase.models.init]
    [metabase.notification.init]
+   [metabase.pulse.init]
    [metabase.query-analysis.init]
+   [metabase.revisions.init]
    [metabase.search.init]
    [metabase.sync.init]
    [metabase.task.init]
+   [metabase.tiles.init]
    [metabase.user-key-value.init]))
 
 ;; load EE init code on system launch if it exists.
