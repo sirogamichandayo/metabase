@@ -51,6 +51,7 @@ export const ParametersWidgetContainer = (
     allowSticky?: boolean;
     isNightMode?: boolean;
     isSticky?: boolean;
+    children?: React.ReactNode;
   },
 ) => {
   const { className, allowSticky, isNightMode, isSticky, ...rest } = props;
@@ -69,13 +70,19 @@ export const ParametersWidgetContainer = (
 };
 
 export const FIXED_WIDTH = "1048px";
-export const FixedWidthContainer = (props: BoxProps) => {
+export const FixedWidthContainer = (
+  props: BoxProps & { children?: React.ReactNode; isFixedWidth?: boolean },
+) => {
   const { className, ...rest } = props;
   return <Box className={cx(S.FixedWidthContainer, className)} {...rest} />;
 };
 
 export const ParametersFixedWidthContainer = (
-  props: BoxProps & { id?: string },
+  props: BoxProps & {
+    id?: string;
+    children?: React.ReactNode;
+    isFixedWidth?: boolean;
+  },
 ) => {
   return (
     <FixedWidthContainer

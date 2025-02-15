@@ -7,6 +7,7 @@ import { t } from "ttag";
 import { useInteractiveDashboardContext } from "embedding-sdk/components/public/InteractiveDashboard/context";
 import { isInstanceAnalyticsCollection } from "metabase/collections/utils";
 import EditBar from "metabase/components/EditBar";
+import LastEditInfoLabel from "metabase/components/LastEditInfoLabel";
 import EditableText from "metabase/core/components/EditableText";
 import CS from "metabase/css/core/index.css";
 import {
@@ -41,9 +42,7 @@ import { Box, Flex } from "metabase/ui";
 import type { Collection, Dashboard } from "metabase-types/api";
 
 import {
-  HeaderContent,
   HeaderFixedWidthContainer,
-  HeaderLastEditInfoLabel,
   HeaderRow,
 } from "../../components/DashboardHeaderViewComponents";
 import S from "../DashboardHeaderView.module.css";
@@ -187,10 +186,11 @@ export function DashboardHeaderView({
               data-testid="fixed-width-dashboard-header"
               isNavBarOpen={isNavBarOpen}
             >
-              <HeaderContent
+              <Box
+                className={cx(S.HeaderContent, {
+                  [S.showSubHeader]: showSubHeader,
+                })}
                 role="heading"
-                hasSubHeader
-                showSubHeader={showSubHeader}
               >
                 <Flex
                   align="center"
@@ -220,14 +220,14 @@ export function DashboardHeaderView({
                 </Flex>
                 <Flex align="center" className={S.HeaderBadges}>
                   {isLastEditInfoVisible && (
-                    <HeaderLastEditInfoLabel
+                    <LastEditInfoLabel
+                      className={S.HeaderLastEditInfoLabel}
                       item={dashboard}
                       onClick={onLastEditInfoClick}
-                      className=""
                     />
                   )}
                 </Flex>
-              </HeaderContent>
+              </Box>
 
               <Flex
                 align="center"
