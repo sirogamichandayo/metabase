@@ -1,19 +1,14 @@
 import cx from "classnames";
 import type { ReactNode } from "react";
 
-import { Flex, Title } from "metabase/ui";
+import { Flex, Icon, Title } from "metabase/ui";
 
-import {
-  ActionsWrapper,
-  ModalContentActionIcon,
-  ModalHeaderBackIcon,
-} from "./ModalContent.styled";
 import S from "./ModalHeader.module.css";
+import { ModalContentActionIcon } from "./ModalHeaderComponents";
 import type { CommonModalProps } from "./types";
 
 export interface ModalHeaderProps extends CommonModalProps {
   children: ReactNode;
-
   className?: string;
 }
 
@@ -31,34 +26,39 @@ export const ModalHeader = ({
 
   return (
     <Flex
-      gap="sm"
-      align="center"
-      p="xl"
       className={cx(S.HeaderContainer, className)}
+      align="center"
+      gap="sm"
+      p="xl"
+      w="100%"
       data-testid="modal-header"
     >
       <Flex
         align="center"
-        className={cx(S.HeaderTextContainer, {
-          [S.clickable]: !!onBack,
-        })}
+        className={cx(S.HeaderTextContainer, { [S.hasOnClick]: !!onBack })}
         onClick={onBack}
       >
-        {onBack && <ModalHeaderBackIcon name="chevronleft" />}
+        {onBack && (
+          <Icon
+            className={cx(S.ModalContentActionIcon, S.ModalHeaderBackIcon)}
+            name="chevronleft"
+          />
+        )}
 
         <Title
           order={2}
-          w="100%"
+          fw="700"
+          display="flex"
           className={cx(S.HeaderText, {
             [S.HeaderTextCentered]: fullPageModal || centeredTitle,
           })}
         >
-          <span className={S.HeaderTextContent}>{children}</span>
+          {children}
         </Title>
       </Flex>
 
       {hasActions && (
-        <ActionsWrapper>
+        <Flex gap="sm" m="-0.5rem -0.5rem -0.5rem 0">
           {headerActions}
           {onClose && (
             <ModalContentActionIcon
@@ -67,7 +67,7 @@ export const ModalHeader = ({
               onClick={onClose}
             />
           )}
-        </ActionsWrapper>
+        </Flex>
       )}
     </Flex>
   );

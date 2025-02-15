@@ -27,4 +27,30 @@
 
 .HeaderContainer {
   flex-shrink: 0;
+
+  &.hasOnClick {
+    &:hover > * {
+      color: var(--mb-color-brand);
+      cursor: pointer;
+    }
+  }
+}
+
+.ModalContentActionIcon {
+  color: var(--mb-color-text-light);
+  cursor: pointer;
+  padding: 0.5rem;
+
+  &:hover {
+    color: var(--mb-color-text-medium);
+  }
+}
+
+.ModalHeaderBackIcon {
+  flex-shrink: 0;
+  margin: -0.5rem 0 -0.5rem -0.5rem;
+
+  &:hover {
+    color: var(--mb-color-brand);
+  }
 }
