@@ -23,7 +23,7 @@ describe("Onboarding checklist page", () => {
       ).should("be.visible");
       cy.contains(
         "Hover over a table and click the yellow lightning bolt",
-      ).should("not.be.visible");
+      ).should("not.exist");
     });
   });
 
@@ -71,7 +71,7 @@ describe("Onboarding checklist page", () => {
   });
 });
 
-describe("Inaccessible Onboarding checklist", () => {
+H.describeEE("Inaccessible Onboarding checklist", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

@@ -154,7 +154,7 @@ describe(
   },
 );
 
-describe(
+H.describeEE(
   "scenarios > admin > settings > SSO > LDAP",
   { tags: "@external" },
   () => {

@@ -661,7 +661,7 @@ describe("scenarios > embedding > dashboard parameters with defaults", () => {
   });
 });
 
-describe("scenarios > embedding > dashboard appearance", () => {
+H.describeEE("scenarios > embedding > dashboard appearance", () => {
   const originalBaseUrl = Cypress.config("baseUrl");
 
   beforeEach(() => {

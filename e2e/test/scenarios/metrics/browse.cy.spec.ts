@@ -347,7 +347,7 @@ describe("scenarios > browse > metrics", () => {
   });
 
   describe("verified metrics", { tags: "@flaky" }, () => {
-    describe("on enterprise", () => {
+    H.describeEE("on enterprise", () => {
       beforeEach(() => {
         cy.signInAsAdmin();
         H.setTokenFeatures("all");

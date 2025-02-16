@@ -20,6 +20,8 @@ describe("scenarios > admin > troubleshooting > help", () => {
 
 describe("scenarios > admin > troubleshooting > help", { tags: "@OSS" }, () => {
   beforeEach(() => {
+    H.onlyOnOSS();
+
     H.restore();
     cy.signInAsAdmin();
   });
@@ -40,7 +42,7 @@ describe("scenarios > admin > troubleshooting > help", { tags: "@OSS" }, () => {
   });
 });
 
-describe("scenarios > admin > troubleshooting > help (EE)", () => {
+H.describeEE("scenarios > admin > troubleshooting > help (EE)", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();
@@ -226,6 +228,8 @@ describe("admin > tools > erroring questions ", { tags: "@quarantine" }, () => {
 
   describe.skip("when feature enabled", () => {
     beforeEach(() => {
+      H.onlyOnEE();
+
       H.restore();
       cy.signInAsAdmin();
       H.setTokenFeatures("all");
@@ -312,6 +316,8 @@ describe("admin > tools > erroring questions ", { tags: "@quarantine" }, () => {
 
   describe("when feature disabled", () => {
     beforeEach(() => {
+      H.onlyOnEE();
+
       H.restore();
       cy.signInAsAdmin();
     });

@@ -148,7 +148,7 @@ describe("scenarios > search", () => {
         .should("not.exist");
     });
 
-    it("should not overflow container if results contain descriptions with large unbroken strings", () => {
+    it("should not overflow container if results contain descriptions with large unborken strings", () => {
       H.createQuestion({
         name: "Description Test",
         query: { "source-table": ORDERS_ID },

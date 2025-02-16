@@ -7,7 +7,7 @@ import {
 } from "./shared/group-mappings-widget";
 import { getSuccessUi, getUserProvisioningInput } from "./shared/helpers";
 
-describe("scenarios > admin > settings > SSO > JWT", () => {
+H.describeEE("scenarios > admin > settings > SSO > JWT", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

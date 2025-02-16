@@ -14,6 +14,8 @@ const NATIVE_QUERIES_PERMISSION_INDEX = 0;
 
 describe("scenarios > admin > permissions", { tags: "@OSS" }, () => {
   beforeEach(() => {
+    H.onlyOnOSS();
+
     H.restore();
     cy.signInAsAdmin();
   });
@@ -432,7 +434,7 @@ describe("scenarios > admin > permissions", { tags: "@OSS" }, () => {
   });
 });
 
-describe("scenarios > admin > permissions", () => {
+H.describeEE("scenarios > admin > permissions", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

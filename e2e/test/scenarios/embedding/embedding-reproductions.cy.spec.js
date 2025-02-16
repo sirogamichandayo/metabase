@@ -650,7 +650,7 @@ describe("issue 27643", { tags: "@external" }, () => {
   });
 });
 
-describe("issue 30535", () => {
+H.describeEE("issue 30535", () => {
   const questionDetails = {
     name: "3035",
     query: {
@@ -1008,7 +1008,7 @@ describe.skip("issue 49142", () => {
   });
 });
 
-describe("issue 8490", () => {
+H.describeEE("issue 8490", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

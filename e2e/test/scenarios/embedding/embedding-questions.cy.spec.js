@@ -215,7 +215,7 @@ describe("scenarios > embedding > questions", () => {
   });
 });
 
-describe("scenarios [EE] > embedding > questions", () => {
+H.describeEE("scenarios [EE] > embedding > questions", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();
@@ -289,7 +289,7 @@ function assertOnXYAxisLabels({ xLabel, yLabel } = {}) {
   H.echartsContainer().get("text").contains(yLabel);
 }
 
-describe("scenarios > embedding > questions > downloads", () => {
+H.describeEE("scenarios > embedding > questions > downloads", () => {
   const questionDetails = {
     name: "Simple SQL Query for Embedding",
     native: {

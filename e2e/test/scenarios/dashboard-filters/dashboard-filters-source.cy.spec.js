@@ -367,7 +367,7 @@ describe(
   },
 );
 
-describe("scenarios > dashboard > filters", () => {
+H.describeEE("scenarios > dashboard > filters", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

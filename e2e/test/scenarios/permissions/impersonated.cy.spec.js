@@ -5,7 +5,7 @@ const { ALL_USERS_GROUP, COLLECTION_GROUP } = USER_GROUPS;
 
 const PG_DB_ID = 2;
 
-describe("impersonated permission", { tags: "@external" }, () => {
+H.describeEE("impersonated permission", { tags: "@external" }, () => {
   describe("admins", () => {
     beforeEach(() => {
       H.restore("postgres-12");

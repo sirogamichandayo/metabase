@@ -173,7 +173,7 @@ describe("embed modal display", () => {
     });
   });
 
-  describe("when the user has a paid instance", () => {
+  H.describeEE("when the user has a paid instance", () => {
     it("should display a disabled state and a link to the Interactive embedding settings", () => {
       H.setTokenFeatures("all");
       H.visitDashboard("@dashboardId");
@@ -522,7 +522,7 @@ describe("#39152 sharing an unsaved question", () => {
           }
         });
 
-        describe("Pro/EE instances", () => {
+        H.describeEE("Pro/EE instances", () => {
           beforeEach(() => {
             H.setTokenFeatures("all");
           });

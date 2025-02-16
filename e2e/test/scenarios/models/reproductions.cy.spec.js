@@ -156,6 +156,7 @@ describe("issue 19776", { tags: "@OSS" }, () => {
   }
 
   beforeEach(() => {
+    H.onlyOnOSS();
     H.restore();
     cy.signInAsAdmin();
   });

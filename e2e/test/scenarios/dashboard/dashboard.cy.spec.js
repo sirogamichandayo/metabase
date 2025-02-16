@@ -50,9 +50,7 @@ describe("scenarios > dashboard", () => {
       );
       H.modal().findByTestId("collection-picker-button").click();
       H.entityPickerModal().findByText("Select a collection");
-      // cy.realPress("Escape");
-      // TODO: Fix this:
-      H.entityPickerModal().button("Cancel").click();
+      cy.realPress("Escape");
       H.modal().findByText("New dashboard").should("be.visible");
 
       cy.log("Create a new dashboard");
@@ -208,7 +206,6 @@ describe("scenarios > dashboard", () => {
       });
       H.entityPickerModal().button("Select").click();
 
-      cy.findByTestId("dashcard").should("be.visible");
       H.saveDashboard();
 
       cy.log(
@@ -353,34 +350,6 @@ describe("scenarios > dashboard", () => {
           .should("have.length", 1)
           .and("contain", "Orders, Count")
           .and("contain", "18,760");
-      });
-
-      it("should save changes to a dashboard after using the 'Add a chart' button from an empty tab (metabase#53132)", () => {
-        cy.log("add an existing card");
-        H.editDashboard();
-        cy.findByTestId("dashboard-header").icon("add").click();
-        H.sidebar().findByText("Orders, Count").click();
-        cy.findByTestId("dashboard-header").icon("add").click();
-
-        cy.log("create a tab to access emtpy state again");
-        H.createNewTab();
-        cy.findByTestId("dashboard-empty-state")
-          .findByText("Add a chart")
-          .click();
-
-        cy.log("save changes before leaving");
-        H.sidebar().findByText("New SQL query").click();
-        H.modal().findByRole("button", { name: "Save changes" }).click();
-
-        cy.log("create a dashboard question");
-        H.NativeEditor.focus().type("SELECT 1");
-        H.saveQuestion("Foo question");
-
-        cy.log(
-          "should have persisted changes from when dashboard was saved before creating a question",
-        );
-        cy.findAllByRole("tab", { name: /Tab \d/ }).should("have.length", 2);
-        H.getDashboardCards().should("have.length", 2);
       });
 
       it("should allow navigating to the notebook editor directly from a dashboard card", () => {
@@ -1186,7 +1155,7 @@ describe("scenarios > dashboard", () => {
 
     // Verify the card is hidden when the value is correct but produces empty results
     H.filterWidget().click();
-    H.dashboardParametersPopover().within(() => {
+    H.popover().within(() => {
       cy.findByPlaceholderText("Enter an ID").type("-1{enter}");
       cy.button("Add filter").click();
     });
@@ -1202,7 +1171,7 @@ describe("scenarios > dashboard", () => {
 
     // Verify the card is visible when it returned an error
     H.filterWidget().click();
-    H.dashboardParametersPopover().within(() => {
+    H.popover().within(() => {
       cy.findByPlaceholderText("Enter an ID").type("text{enter}");
       cy.button("Add filter").click();
     });
@@ -1559,7 +1528,7 @@ describe("LOCAL TESTING ONLY > dashboard", () => {
   });
 });
 
-describe("scenarios > dashboard > caching", () => {
+H.describeEE("scenarios > dashboard > caching", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

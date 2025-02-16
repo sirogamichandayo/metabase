@@ -467,7 +467,7 @@ describe("scenarios > notebook > link to data source", () => {
       });
     });
 
-    describe("sandboxing", () => {
+    H.describeEE("sandboxing", () => {
       beforeEach(() => {
         H.setTokenFeatures("all");
 

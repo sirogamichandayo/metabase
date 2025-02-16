@@ -6,7 +6,7 @@ import { createNativeQuestion } from "../../../support/helpers/api/createNativeQ
 const SCOREBOARD_TABLE = "scoreboard_actions";
 const COLORS_TABLE = "colors27745";
 
-describe("query validator", { tags: "@external" }, () => {
+H.describeEE("query validator", { tags: "@external" }, () => {
   describe("feature disabled", () => {
     beforeEach(() => {
       H.restore("postgres-writable");
@@ -181,6 +181,7 @@ describe("query validator", { tags: "@external" }, () => {
 
 describe("OSS", { tags: "@OSS" }, () => {
   beforeEach(() => {
+    H.onlyOnOSS();
     H.restore();
     cy.signInAsAdmin();
   });

@@ -4,7 +4,7 @@ import {
   ORDERS_DASHBOARD_ID,
 } from "e2e/support/cypress_sample_instance_data";
 
-describe(
+H.describeEE(
   "scenarios > premium > content verification",
   { tags: "@flaky" },
   () => {

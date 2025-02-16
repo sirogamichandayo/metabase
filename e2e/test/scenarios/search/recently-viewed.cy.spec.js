@@ -125,7 +125,7 @@ describe("Recently Viewed > Entity Picker", () => {
   });
 });
 
-describe("search > recently viewed > enterprise features", () => {
+H.describeEE("search > recently viewed > enterprise features", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();

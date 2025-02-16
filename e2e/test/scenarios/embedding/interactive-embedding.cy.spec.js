@@ -17,7 +17,7 @@ import {
 const { ORDERS, ORDERS_ID } = SAMPLE_DATABASE;
 const { ALL_USERS_GROUP } = USER_GROUPS;
 
-describe("scenarios > embedding > full app", () => {
+H.describeEE("scenarios > embedding > full app", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();
@@ -898,7 +898,7 @@ describe("scenarios > embedding > full app", () => {
         "not.exist",
       );
       H.dashboardGrid()
-        .findByText(/Rows 1-\d of first 2000/)
+        .findByText("Rows 1-6 of first 2000")
         .should("be.visible");
     });
 

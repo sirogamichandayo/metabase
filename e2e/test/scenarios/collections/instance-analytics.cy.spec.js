@@ -9,7 +9,7 @@ const CUSTOM_REPORTS_COLLECTION_NAME = "Custom reports";
 const PEOPLE_MODEL_NAME = "People";
 const METRICS_DASHBOARD_NAME = "Metabase metrics";
 
-describe("scenarios > Metabase Analytics Collection (AuditV2) ", () => {
+H.describeEE("scenarios > Metabase Analytics Collection (AuditV2) ", () => {
   describe("admin", () => {
     beforeEach(() => {
       cy.intercept("GET", "/api/field/*/values").as("fieldValues");
@@ -282,8 +282,9 @@ describe("scenarios > Metabase Analytics Collection (AuditV2) ", () => {
 });
 
 describe("question and dashboard links", () => {
-  describe("ee", () => {
+  H.describeEE("ee", () => {
     beforeEach(() => {
+      H.onlyOnEE();
       H.restore();
       cy.signInAsAdmin();
       H.setTokenFeatures("all");
@@ -365,6 +366,7 @@ describe("question and dashboard links", () => {
 
   describe("oss", { tags: "@OSS" }, () => {
     beforeEach(() => {
+      H.onlyOnOSS();
       H.restore();
       cy.signInAsAdmin();
     });

@@ -69,7 +69,7 @@ describe("scenarios > auth > signin > SSO", () => {
     });
   });
 
-  describe("EE", () => {
+  H.describeEE("EE", () => {
     beforeEach(() => {
       H.setTokenFeatures("all");
       // Disable password log-in

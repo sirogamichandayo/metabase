@@ -1,6 +1,5 @@
 const { H } = cy;
 import { USER_GROUPS } from "e2e/support/cypress_data";
-import { modal } from "e2e/support/helpers";
 
 const { ALL_USERS_GROUP } = USER_GROUPS;
 
@@ -154,6 +153,7 @@ describe("scenarios > question > snippets", () => {
 
 describe("scenarios > question > snippets (OSS)", { tags: "@OSS" }, () => {
   beforeEach(() => {
+    H.onlyOnOSS();
     H.restore();
   });
 
@@ -171,7 +171,7 @@ describe("scenarios > question > snippets (OSS)", { tags: "@OSS" }, () => {
   });
 });
 
-describe("scenarios > question > snippets (EE)", () => {
+H.describeEE("scenarios > question > snippets (EE)", () => {
   beforeEach(() => {
     H.restore();
     cy.signInAsAdmin();
@@ -346,11 +346,9 @@ describe("scenarios > question > snippets (EE)", () => {
       H.popover().findByText("Edit folder details").click();
       H.modal().findByTestId("collection-picker-button").click();
 
-      H.entityPickerModalItem(1, /Snippet Folder/).should(
-        "have.attr",
-        "data-disabled",
-        "true",
-      );
+      H.entityPickerModal()
+        .findByRole("button", { name: /Snippet Folder/ })
+        .should("be.disabled");
     });
 
     it("should not display snippet folder as part of collections (metabase#14907)", () => {
@@ -388,7 +386,7 @@ describe("scenarios > question > snippets (EE)", () => {
       });
 
       H.popover().contains("View").click();
-      modal().button("Save").click();
+      cy.button("Save").click();
 
       cy.wait("@updatePermissions");
 

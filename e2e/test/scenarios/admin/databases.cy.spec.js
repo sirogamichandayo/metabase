@@ -1,5 +1,4 @@
 const { H } = cy;
-const { IS_ENTERPRISE } = Cypress.env();
 import {
   QA_MONGO_PORT,
   QA_MYSQL_PORT,
@@ -116,7 +115,7 @@ describe("admin > database > add", () => {
     describe("postgres", () => {
       beforeEach(() => {
         H.popover().within(() => {
-          if (IS_ENTERPRISE) {
+          if (H.isEE) {
             // EE should ship with Oracle and Vertica as options
             cy.findByText("Oracle");
             cy.findByText("Vertica");
@@ -530,13 +529,13 @@ describe("scenarios > admin > databases > exceptions", () => {
   it("should handle a failure to `GET` the list of all databases (metabase#20471)", () => {
     const errorMessage = "Lorem ipsum dolor sit amet, consectetur adip";
 
-    IS_ENTERPRISE && H.setTokenFeatures("all");
+    H.isEE && H.setTokenFeatures("all");
 
     cy.intercept(
       {
         method: "GET",
         pathname: "/api/database",
-        query: IS_ENTERPRISE
+        query: H.isEE
           ? {
               exclude_uneditable_details: "true",
             }
