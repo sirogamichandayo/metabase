@@ -93,11 +93,22 @@
          (throw (ex-info (tru "Email is not verified.") {:status-code 400})))))))
 
 (defn- autocreate-user-allowed-for-email? [email]
-  (boolean
-   (when-let [domains (google.i/google-auth-auto-create-accounts-domain)]
-     (some
-      (partial u/email-in-domain? email)
-      (str/split domains #"\s*,\s*")))))
+  (let [domains (google.i/google-auth-auto-create-accounts-domain)]
+    (cond
+      ;; domain設定が "*" なら、常にOK
+      (= domains "*")
+      true
+
+      ;; それ以外では、従来通りカンマ区切りされたドメインのいずれかに合致するか判定
+      (some? domains)
+      (some
+       (partial u/email-in-domain? email)
+       (str/split domains #"\s*,\s*"))
+
+      ;; domain設定自体がないなら不可
+      :else
+      false)))
+
 
 (defn- check-autocreate-user-allowed-for-email
   "Throws if an admin needs to intervene in the account creation."
